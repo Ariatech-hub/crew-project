@@ -1,0 +1,88 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <!--<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+	<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>-->
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <SpaProxyServerUrl>http://localhost:8080</SpaProxyServerUrl>
+    <!--<SpaProxyLaunchCommand>yarn dev</SpaProxyLaunchCommand>-->
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+  </PropertyGroup>
+  <ItemGroup>
+    <Script Include="**" />
+    <Compile Remove="Images\Farmer\**" />
+    <Script Remove="**.d.ts" />
+    <Script Remove="Images\Farmer\**" />
+    <PackageReference Include="EPPlus" Version="4.5.3.3" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.1.2" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Images\Farmer\**" />
+    <EmbeddedResource Remove="Images\Farmer\**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Remove="Images\Farmer\**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+  <PropertyGroup>
+    <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="test.js" />
+    <Script Remove="Controllers\CustomerController.cs" />
+    <Script Remove="Controllers\DashboardController.cs" />
+    <Script Remove="Controllers\DispatchController.cs" />
+    <Script Remove="Controllers\FarmerController.cs" />
+    <Script Remove="Controllers\GrainCycleController.cs" />
+    <Script Remove="Controllers\ProductionPlanController.cs" />
+    <Script Remove="Controllers\StockController.cs" />
+    <Script Remove="Controllers\ViewController.cs" />
+    <Script Remove="Data\FarmToFork.db" />
+    <Script Remove="PDFAsView.cs" />
+    <Script Remove="test.js" />
+    <Script Remove="Using.cs" />
+    <Script Remove="wkhtmltopdf.exe" />
+    <ProjectReference Include="..\FarmToFork.Business\FarmToFork.Business.csproj" />
+    <ProjectReference Include="..\FarmToFork.Core\FarmToFork.Core.csproj" />
+    <ProjectReference Include="..\FarmToFork.Infrastructure\FarmToFork.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\View\GenerateCard.cshtml" />
+    <None Include="Views\View\GenerateReceipt.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <!--<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+	  <Exec Command="node version" ContinueOnError="true">
+	  <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+	</Exec>
+	<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+	<Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+	<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>-->
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <Exec WorkingDirectory="$(SpaRoot)" Command="yarn install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="quasar build" />
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\spa\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+</Project>

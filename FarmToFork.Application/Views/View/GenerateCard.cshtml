@@ -1,0 +1,270 @@
+﻿@model FarmToFork.Business.DTOs.FarmerCardView
+@{
+    string bg_url = Model.ImageUrl!;
+    var farmers = Model.Farmers;
+}
+
+<html>
+<head>
+    <title>Card</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            width: 90mm;
+            height: 55mm;
+            background-image: url(@bg_url);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            position: relative;
+            background-color: transparent;
+            border: solid 1px red;
+            float: left;
+            margin-left: 3mm;
+            margin-bottom: 3mm;
+        }
+
+        .qr-code {
+            width: 18mm;
+            height: 19mm;
+            top: 34mm;
+            left: 66.5mm;
+            position: absolute;
+        }
+
+
+
+        .break-here {
+            height: 0;
+            page-break-after: always;
+            margin: 0;
+            border-top: none;
+        }
+
+
+        .name {
+            top: 24mm;
+            left: 30mm;
+            position: absolute;
+            font-family: Consolas;
+            font-size: 2.5mm;
+            text-transform: uppercase;
+        }
+
+        .phoneNumber {
+            top: 39.5mm;
+            left: 32.5mm;
+            position: absolute;
+            font-size: 2.5mm;
+            text-transform: uppercase;
+            font-family: Consolas;
+        }
+
+        .address {
+            top: 31.5mm;
+            left: 32mm;
+            position: absolute;
+            font-family: Consolas;
+            font-size: 2.5mm;
+        }
+
+        .flip-horizontal {
+            -moz-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            transform: scaleX(-1);
+            /*-ms-filter: fliph;*/ /*IE*/
+            /*filter: fliph;*/ /*IE*/
+        }
+        .gender{
+            top: 27.5mm;
+            left: 30mm;
+            position: absolute;
+            font-family: Consolas;
+            font-size: 2.5mm;
+        }
+
+        .citizenship {
+            top: 35.5mm;
+            left: 37mm;
+            position: absolute;
+            font-family: Consolas;
+            font-size: 2.5mm;
+        }
+
+        .dob {
+            top: 24mm;
+            left: 71.5mm;
+            position: absolute;
+            font-family: Consolas;
+            font-size: 2.5mm;
+        }
+
+        .issue-date {
+            top: 28mm;
+            left: 71.5mm;
+            position: absolute;
+            font-family: Consolas;
+            font-size: 2.5mm;
+        }
+        .image{
+            width: 19mm;
+            height: 21mm;
+            top: 24.5mm;
+            left: 3mm;
+            position: absolute;
+        }
+        .code{
+            background-color: #167523;
+            color:white;
+            font-family: Consolas;
+            font-size: 3mm;
+            width: 20mm;
+            top: 46.5mm;
+            left: 19mm;
+            position:absolute;
+        }
+        @@media print {
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+
+
+            @@page {
+                size: 210mm 297mm;
+            }
+
+
+
+            .container {
+                width: 88mm;
+                height: 56mm;
+                margin-right: 10mm;
+                margin-left: 3mm;
+                margin-bottom: 1mm;
+                border: solid 1px transparent;
+            }
+
+            .qr-code {
+                width: 18mm;
+                height: 19mm;
+                top: 33mm;
+                left: 66mm;
+                position: absolute;
+            }
+
+            .name {
+                top: 26mm;
+                left: 30mm;
+                position: absolute;
+                font-family: Consolas;
+                font-size: 2.5mm;
+                text-transform: uppercase;
+            }
+
+            .phoneNumber {
+                top: 41.5mm;
+                left: 32.5mm;
+                position: absolute;
+                font-size: 2.5mm;
+                text-transform: uppercase;
+                font-family: Consolas;
+            }
+
+            .address {
+                top: 33.5mm;
+                left: 32mm;
+                position: absolute;
+                font-family: Consolas;
+                font-size: 2.5mm;
+            }
+
+            .flip-horizontal {
+                -moz-transform: scaleX(-1);
+                -webkit-transform: scaleX(-1);
+                -o-transform: scaleX(-1);
+                transform: scaleX(-1);
+                /*-ms-filter: fliph;*/ /*IE*/
+                /*filter: fliph;*/ /*IE*/
+            }
+
+            .gender {
+                top: 29.5mm;
+                left: 30mm;
+                position: absolute;
+                font-family: Consolas;
+                font-size: 2.5mm;
+            }
+
+            .citizenship {
+                top: 37.5mm;
+                left: 37mm;
+                position: absolute;
+                font-family: Consolas;
+                font-size: 2.5mm;
+            }
+
+            .dob {
+                top: 26mm;
+                left: 71.5mm;
+                position: absolute;
+                font-family: Consolas;
+                font-size: 2.5mm;
+            }
+
+            .issue-date {
+                top: 30mm;
+                left: 71.5mm;
+                position: absolute;
+                font-family: Consolas;
+                font-size: 2.5mm;
+            }
+
+            .image {
+                width: 19mm;
+                height: 21mm;
+                top: 24mm;
+                left: 3mm;
+                position: absolute;
+            }
+
+            .code {
+                background-color: #167523;
+                color: white;
+                font-family: Consolas;
+                font-size: 3mm;
+                width: 20mm;
+                top: 48.5mm;
+                left: 19mm;
+                position: absolute;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper" style="margin:3mm 3mm">
+        @foreach (var item in Model.Farmers)
+        {
+            <div class="container @(Model.IsCardFlipped ? "flip-horizontal" : "")" style="page-break-inside: avoid;">
+                <p class="name">@item.FullName</p>
+                <p class="gender">@item.GenderNepaliName</p>
+                <p class="address">@item.PalikaNepaliName - @item.Ward, @item.CommunityNepaliName</p>
+                <p class="citizenship">@item.CitizenshipNumber</p>
+                <p class="phoneNumber">@item.MobileNumber</p>
+                <p class="dob">@item.DateOfBirth</p>
+                <p class="issue-date">2080-06-30</p>
+                <img src="@item.PhotoName" class="image"/>
+                <img class="qr-code" src="@String.Format("data:image/png;base64,{0}", item.QRCode)" />
+                <p class="code">@item.FarmerCode</p>
+
+            </div>
+
+        }
+        <div style="clear:both;"></div>
+    </div>
+</body>
+</html>

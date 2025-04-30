@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Script Include="**" />
+    <Script Remove="**.d.ts" />
+    <Script Remove="Exception\DataNotFoundException.cs" />
+    <Script Remove="Exception\DataValidationException.cs" />
+    <Script Remove="Exception\ForeignKeyConflictException.cs" />
+    <Script Remove="Exception\GeneralException.cs" />
+    <Script Remove="Models\FarmerReportRelated.cs" />
+    <Script Remove="Repositories\ICardImageRepository.cs" />
+    <Script Remove="Repositories\ICustomerRepository.cs" />
+    <Script Remove="Repositories\IIncomeSourceRepository.cs" />
+    <Script Remove="Repositories\ILabourDivisionRepository.cs" />
+    <Script Remove="Repositories\ILocationRepository.cs" />
+    <Script Remove="Repositories\IMaritalStatusRepository.cs" />
+    <Script Remove="Repositories\IProductionPlanRepository.cs" />
+    <Script Remove="Repositories\IProvinceRepository.cs" />
+    <Script Remove="Repositories\ISqliteRepository.cs" />
+    <Script Remove="Repositories\IStatusRepository.cs" />
+    <Script Remove="SqliteEntities\Response.cs" />
+    <Script Remove="UsingCore.cs" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Enum\" />
+  </ItemGroup>
+</Project>

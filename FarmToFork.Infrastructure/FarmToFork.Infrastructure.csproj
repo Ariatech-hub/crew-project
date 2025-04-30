@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Script Include="**" />
+    <Script Remove="**.d.ts" />
+    <Script Remove="Context\SqlLiteDbContext.cs" />
+    <Script Remove="Repositories\CardImageRepository.cs" />
+    <Script Remove="Repositories\CustomerRepository.cs" />
+    <Script Remove="Repositories\IncomeSourceRepository.cs" />
+    <Script Remove="Repositories\LabourDivisonRepository.cs" />
+    <Script Remove="Repositories\LocationRepositiory.cs" />
+    <Script Remove="Repositories\MaritalStatusRepository.cs" />
+    <Script Remove="Repositories\ProductionPlanRepository.cs" />
+    <Script Remove="Repositories\ProvinceRepository.cs" />
+    <Script Remove="Repositories\ReceiptRepository.cs" />
+    <Script Remove="Repositories\SqlLiteRepository.cs" />
+    <Script Remove="Repositories\StatusRepository.cs" />
+    <Script Remove="UsingInfrastructure.cs" />
+    <PackageReference Include="Dapper" Version="2.1.24" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FarmToFork.Business\FarmToFork.Business.csproj" />
+    <ProjectReference Include="..\FarmToFork.Core\FarmToFork.Core.csproj" />
+  </ItemGroup>
+</Project>

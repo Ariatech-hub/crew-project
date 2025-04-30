@@ -1,0 +1,92 @@
+﻿@model FarmToFork.Business.DTOs.BuyerReceiptDto
+
+<html>
+<head>
+    <title>Buyer Sales Receipt</title>
+        <link type="text/css" rel="stylesheet" href="/content/bootstrap.min.css" />
+
+    <style>
+        .container {
+            width: 120mm;
+            height: 120mm;
+            border: solid 1px #000;
+            padding-left: 6px
+          
+        }
+
+        .content{
+            float: left;
+            width: 50%;
+        }
+        .content2{
+            float:left; 
+            width: 50%; 
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 0px;">Aria Technologies</h2>
+        <h5 style="text-align: center; margin-top: 0px; padding-top: 2px">Phone No: 981231321</h5>
+        <h3 style="text-align: center">Buyer Sales Receipt</h3>
+        <div>
+            <div class="content">
+                Name: @Model.CustomerGrainCycleCustomerName
+            </div>
+            <div class="content">
+                Phone No: @Model.CustomerGrainCycleCustomerPhoneNumber
+            </div>
+            
+        </div>
+        <div>
+            <div class="content2">
+                Email: @Model.CustomerGrainCycleCustomerEmail
+            </div>
+            <div class="content2">
+                Grain: @Model.CustomerGrainCycleGrainCycleGrainName
+            </div>
+            
+        </div>
+        <div>
+            <div class="content2">
+                Grain Cycle: @Model.CustomerGrainCycleGrainCycleName
+            </div>
+            <div class="content2">
+                Status: @Model.StatusName
+            </div>
+        </div>
+        <div>
+            <div class="content2">
+                Estimated Quantity: @Model.Quantity
+            </div>
+            <div class="content2">
+                Estimated Price: @Model.Price
+            </div>
+           
+        </div>
+        <div>
+            <div class="content2">
+                Total Price: @(Model.Quantity * Model.Price)
+            </div>
+            <div class="content2">
+               Remarks: @Model.Remarks
+            </div>
+        </div>
+
+        <div>
+            <div class="content2">
+                Sales Date: @Model.CreatedDates
+            </div>
+            <div class="content2" style="color:white">
+                whitespace
+            </div>
+        </div>
+
+        
+          <div style="margin-top: 300px; margin-left: 2px;">............................</div>
+          <div style="margin-left: 2px">Verified By</div>
+        
+    </div>
+</body>
+</html>
